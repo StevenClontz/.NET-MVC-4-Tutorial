@@ -1,7 +1,28 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Movie List";
 }
 
-<h2>Index</h2>
+<h2>
+    My @(ViewBag.Title)
+</h2>
 
 <p>Hello from our View Template!</p>
+
+<p>Testing email@@atsymbol.yeah</p>
+
+<ul>
+  @for (int i=0; i < 3; i++) { 
+    <li>@(i)</li> 
+  }
+</ul>
+
+<pre>
+Two style thoughts:
+  1) Always wrap inline code blocks with parentheses for 
+     readability.
+       Ex: I am @@(age) years old!
+  2) Always double escape at symbols not starting a code block 
+     (relying on Razor magic is unreliable if we don't know the 
+     rules)
+       Ex: Contact me at steven@@@@awesome.org
+</pre>

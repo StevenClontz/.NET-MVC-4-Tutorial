@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Text.RegularExpressions;
 
 namespace MvcMovie
 {
@@ -23,6 +24,15 @@ namespace MvcMovie
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+        }
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            string url = Request.Url.ToString();
+            if (Request.HttpMethod == "GET" && Regex.Match(url, "(?<=^[^?]*)[A-Z]").Success)
+            {
+                Response.RedirectPermanent(url.ToLower(), true);
+            }
         }
     }
 }
